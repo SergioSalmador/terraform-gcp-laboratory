@@ -1,11 +1,20 @@
 pipeline {
 agent any 
     stages{ 
-        stage('Unit-test') {
+        stage('Connect GCP') {
             steps { 
                 withCredentials([file(credentialsId: 'GOOGLE_CREDENTIALS', variable: 'GOOGLE_CREDENTIALS')]) {
                  sh """
                     gcloud auth activate-service-account devops-coe@agile-aleph-273106.iam.gserviceaccount.com --key-file=$GOOGLE_CREDENTIALS
+                 """
+                }
+            } 
+        }
+         stage('Create VPC') {
+            steps { 
+                 sh """
+                    cd vpc/ &&
+                    terraform -version
                  """
                 }
             } 
