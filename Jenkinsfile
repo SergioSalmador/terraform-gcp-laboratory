@@ -18,7 +18,6 @@ agent any
                  """
                 }
             } 
-        }
     }
     post { 
         always { 
