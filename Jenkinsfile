@@ -3,8 +3,12 @@ agent any
     stages{ 
         stage('Unit-test') {
             steps { 
-                withCredentials([file(credentialsId: 'GOOGLE_CREDENTIALS', variable: 'GOOGLE_CREDENTIALS')]) {
-                 sh """gcloud auth activate-service-account devops-coe@agile-aleph-273106.iam.gserviceaccount.com --key-file=$GOOGLE_CREDENTIALS"""
+                withCredentials([file(credentialsId: 'KUBECONFIG', variable: 'KUBECONFIG')]) {
+                 sh """
+                    mkdir ~/.kube &&
+                    cat $KUBECONFIG > ~/.kube/config &&
+                    kubectl cluster-info
+                 """
                 }
             } 
         }
