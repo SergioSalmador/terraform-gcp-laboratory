@@ -19,14 +19,6 @@ agent any
                  """
                 }
             } 
-         stage('Confirmación de accion') {
-            steps {
-                script {
-                    def userInput = input(id: 'confirm', message: params.ACCION + '?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
-                }
-            }
-        }
-        
     }
     post { 
         always { 
