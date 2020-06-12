@@ -5,7 +5,7 @@ agent any
             steps { 
                 withCredentials([file(credentialsId: 'GOOGLE_CREDENTIALS', variable: 'GOOGLE_CREDENTIALS')]) {
                  sh """
-                    gcloud auth activate-service-account devops-coe@agile-aleph-273106.iam.gserviceaccount.com --key-file=$GOOGLE_CREDENTIALS &&
+                    gcloud auth activate-service-account devops-coe@agile-aleph-273106.iam.gserviceaccount.com --key-file=${GOOGLE_CREDENTIALS} &&
                     gcloud projects list
                  """
                 }
@@ -14,6 +14,7 @@ agent any
          stage('Terraform plan ---') {
             steps { 
                  sh """
+                    gcloud auth activate-service-account devops-coe@agile-aleph-273106.iam.gserviceaccount.com --key-file=${GOOGLE_CREDENTIALS} &&
                     terraform --version &&
                     cd vpc/ &&
                     terraform init &&
