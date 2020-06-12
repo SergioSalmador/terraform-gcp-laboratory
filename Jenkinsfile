@@ -15,6 +15,7 @@ agent any
                  sh """
                     terraform --version &&
                     cd vpc/ &&
+                    terraform init &&
                     terraform plan -refresh=true 
                  """
                 }
