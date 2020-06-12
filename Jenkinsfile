@@ -21,9 +21,9 @@ agent any
                 }
             } 
     }
-    post { 
-        always { 
-            cleanWs()
-        }
-    }
+    // post { 
+     //   always { 
+    //        cleanWs()
+    //    }
+   // }
 }
